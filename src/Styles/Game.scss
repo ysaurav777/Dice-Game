@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.main-con1 {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto',sans-serif;
+    align-items: center;
+    padding: 2rem;
+}
+
+.tolsco {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    >h1 {
+        font-weight: 500;
+        font-size: 4.5rem;
+        margin-bottom: 0%;
+    }
+    >P {
+        font-size: 1rem;
+        font-weight: 400;
+    }
+}
+
+.selnum {
+    display: flex;
+    flex-direction: column;
+}
+
+.btns {
+    display: flex;
+    >button {
+        color: black;
+        background-color: white;
+        margin: 0 0.5rem;
+        padding: 1rem 1.3rem;
+        font-weight: bold;
+        border: solid 0.05rem;
+    }
+}
+
+.main-con2 {
+    display: flex;
+    justify-content: center;
+    >div {
+        display: flex;
+        flex-direction: column;
+        >img {
+            height: 13rem;
+            width: 13rem;
+        }
+        >p {
+            font-size: 1.5rem;
+            margin: 0.2rem 0;
+        }
+        >div {
+            display: flex;
+            flex-direction: column;
+            >button {
+                width: 12rem;
+                height: 2rem;
+                margin: 0.5rem;
+                border: solid 0.05rem;
+                border-radius: 0.2rem;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.btn1 {
+    color: black;
+    background-color: white;
+}
+
+.btn2 {
+    color: white;
+    background-color: black;
+}
