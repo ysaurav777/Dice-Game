@@ -8,6 +8,7 @@ const Game = () => {
   const [selnum,selectnumberon]=useState();
   console.log(selnum)
 
+  const test=0
   return (
     <div>
       <div className='main-con1'>
