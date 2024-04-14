@@ -72,9 +72,32 @@
 .btn1 {
     color: black;
     background-color: white;
+    cursor: pointer;
 }
 
 .btn2 {
     color: white;
     background-color: black;
+    cursor: pointer;
+}
+
+.rules {
+    display: flex;
+    justify-content: center;
+}
+
+.ruleslist{
+    background-color: #FBF1F1;
+    padding: 1rem;
+    >h1 {
+        line-height: 4rem;
+    }
+}
+
+.errmsg{
+    display: flex;
+    justify-content: end;
+    color: red;
+    font-family: 'Roboto',sans-serif;
+    font-size: 1.2rem;
 }

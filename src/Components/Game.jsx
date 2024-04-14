@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../Styles/Game.scss';
 import styled from 'styled-components';
-import dice_0 from '../Assests/dice_4.png'
+import dice_0 from '../Assests/dice_1.png'
 import dice_1 from '../Assests/dice_1.png'
 import dice_2 from '../Assests/dice_2.png'
 import dice_3 from '../Assests/dice_3.png'
@@ -11,11 +11,58 @@ import dice_6 from '../Assests/dice_6.png'
 
 
 const Game = () => {
-  const score=0;
   const arrnum=[1,2,3,4,5,6];
   const [selnum,selectnumberon]=useState(0);
-  let t=`dice_${selnum}`;
-  console.log(t);
+  const [score,setscore]=useState(0);
+  const [rules,setruled]=useState(false);
+  const [numsel,setnumsel]=useState(false);
+  const [diceimage,setdiceimage]=useState(dice_0);
+  const [errormsg,seterrormsg]=useState(false);
+  function rulesdispplay() {
+    if(rules===true) {
+      setruled(false);
+      return;
+    }
+    setruled(true);
+  }
+
+  function numberisselected(value) {
+    selectnumberon(value);
+    setnumsel(true);
+    seterrormsg(false);
+  }
+
+  function resetscore() {
+    selectnumberon(0);
+    setscore(0);
+    setdiceimage(dice_0);
+    setnumsel(false);
+  }
+
+  function randomnumber(length) {
+    return Math.floor(Math.random()*length);
+  }
+
+  function addingscore(num) {
+    const t=num+score;
+    setscore(t);
+  }
+
+  function rollthedice() {
+    if(numsel===false) {
+      seterrormsg(true);
+      return;
+    }
+    const arr = [dice_1,dice_2,dice_3,dice_4,dice_5,dice_6];
+    const randomnum=randomnumber(6);
+    setdiceimage(arr[randomnum]);
+    if(randomnum===selnum-1) {
+      addingscore(selnum);
+    }
+    else {
+      addingscore(-2);
+    }
+  }
 
   return (
     <div>
@@ -25,12 +72,16 @@ const Game = () => {
           <p>Total Score</p>
         </div>
         <div className='selnum'>
+          <div className='errmsg'>
+            {
+              errormsg===true?<p>You have not selected any number</p>:<p></p>
+            }</div>
           <div className='btns'>
             {
               arrnum.map((value,i)=>(
                 <Box
-                isSelect={value==selnum}
-                onClick={()=>selectnumberon(value)} key={i}>{value}</Box>
+                isSelect={value===selnum}
+                onClick={()=>numberisselected(value)} key={i}>{value}</Box>
               ))
             }
           </div>
@@ -41,14 +92,25 @@ const Game = () => {
       </div>
       <div className='main-con2'>
         <div>
-          <img src={dice_0}alt='current image'/>
+          <img src={diceimage} alt='current image' onClick={()=>rollthedice()}/>
           <p>Click on Dice to roll</p>
           <div>
-            <button className='btn1'>Reset Score</button>
-            <button className='btn2'>Show Rules</button>
+            <button className='btn1' onClick={()=>resetscore()}>Reset Score</button>
+            <button className='btn2' onClick={()=>rulesdispplay()}>Show Rules</button>
           </div>
         </div>
       </div>
+      <div className='rules'>
+            {
+              rules===true?<div className='ruleslist'>
+                <h1>How to play dice game</h1>
+                <p>Select any number</p>
+                <p>Click on dice image</p>
+                <p>after click on dice if selected number is equal to dice number you will get some point as dice</p>
+                <p>if you get wrong guess then 2 point will be dedcuted</p>
+              </div>:<p></p>
+            }
+          </div>
     </div>
   )
 }
